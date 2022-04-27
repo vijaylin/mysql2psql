@@ -278,6 +278,7 @@ language plpgsql;
     file = open("out.sql", mode='w', encoding='utf8')
     file.write(upd_trigger)
 
+    psql = PsqlTabSql()
     tables = mysql.select("show tables")
     for row in tables:
         table = row[0]
@@ -290,8 +291,6 @@ language plpgsql;
         # print(tab.name)
         # for f in tab.fields:
         #     print(f)
-
-        psql = PsqlTabSql()
         tab_str = psql.build_psql_tabel(tab)
         # print(tab_str)
         file.write(tab_str)
